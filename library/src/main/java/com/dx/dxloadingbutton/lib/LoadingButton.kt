@@ -114,6 +114,7 @@ class LoadingButton @JvmOverloads constructor(
     private var mRippleColor = Color.BLACK
     private var mRippleAlpha = 0.3f
     private var mStyle = 0
+    private var mDelayStart = 400
 
 
     private var mPadding = 6 * mDensity
@@ -173,6 +174,7 @@ class LoadingButton @JvmOverloads constructor(
             mRippleAlpha = ta.getFloat(R.styleable.LoadingButton_lb_btnRippleAlpha, 0.3f)
             mButtonCorner = ta.getFloat(R.styleable.LoadingButton_lb_cornerRadius, 2 * mDensity)
             mStyle = ta.getInteger(R.styleable.LoadingButton_lb_style, 0)
+            mDelayStart = ta.getInteger(R.styleable.LoadingButton_lb_delayStart, 400)
             ta.recycle()
         }
 
@@ -502,7 +504,7 @@ class LoadingButton @JvmOverloads constructor(
                 if (isReverse) width / 2 - height / 2 else 0,
                 if (isReverse) 0 else width / 2 - height / 2)
                 .apply {
-                    duration = 400
+                    duration = mDelayStart.toLong()
                     interpolator = AccelerateDecelerateInterpolator()
                     startDelay = 100
                     addUpdateListener { valueAnimator ->

@@ -61,7 +61,7 @@
         app:lb_btnRippleColor="#000000"
         app:lb_btnText="@string/button_text"
         app:lb_style="1"
-        />
+        app:lb_delayStart= "1000" />
 
 
    <LinearLayout

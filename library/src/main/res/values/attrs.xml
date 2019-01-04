@@ -11,5 +11,6 @@
         <attr name="lb_btnDisabledColor" format="reference|color" />
         <attr name="lb_disabledTextColor" format="reference|string" />
         <attr name="lb_style" format="integer" />
+        <attr name="lb_delayStart" format="integer" />
     </declare-styleable>
 </resources>
