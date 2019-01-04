@@ -113,6 +113,7 @@ class LoadingButton @JvmOverloads constructor(
     private var mDisabledTextColor = Color.DKGRAY
     private var mRippleColor = Color.BLACK
     private var mRippleAlpha = 0.3f
+    private var mStyle = 0
 
 
     private var mPadding = 6 * mDensity
@@ -171,6 +172,7 @@ class LoadingButton @JvmOverloads constructor(
             mRippleColor = ta.getColor(R.styleable.LoadingButton_lb_btnRippleColor, Color.BLACK)
             mRippleAlpha = ta.getFloat(R.styleable.LoadingButton_lb_btnRippleAlpha, 0.3f)
             mButtonCorner = ta.getFloat(R.styleable.LoadingButton_lb_cornerRadius, 2 * mDensity)
+            mStyle = ta.getInteger(R.styleable.LoadingButton_lb_style, 0)
             ta.recycle()
         }
 
@@ -178,7 +180,15 @@ class LoadingButton @JvmOverloads constructor(
             setLayerType(View.LAYER_TYPE_SOFTWARE, this)
             isAntiAlias = true
             color = mColorPrimary
-            style = Paint.Style.FILL
+            if (mStyle == 0) {
+                style = Paint.Style.FILL
+            } else if (mStyle == 1) {
+                style = Paint.Style.STROKE
+                strokeWidth = 2 * mDensity
+            } else {
+                style = Paint.Style.FILL_AND_STROKE
+                strokeWidth = 2 * mDensity
+            }
             setShadowDepth(context, 1)
         }
 
@@ -186,7 +196,15 @@ class LoadingButton @JvmOverloads constructor(
             isAntiAlias = true
             color = mRippleColor
             alpha = (mRippleAlpha * 255).toInt()
-            style = Paint.Style.FILL
+            if (mStyle == 0) {
+                style = Paint.Style.FILL
+            } else if (mStyle == 1) {
+                style = Paint.Style.STROKE
+                strokeWidth = 2 * mDensity
+            } else {
+                style = Paint.Style.FILL_AND_STROKE
+                strokeWidth = 2 * mDensity
+            }
         }
 
         mStrokePaint.apply {
